@@ -30,7 +30,39 @@ def main():
     print("\n--- Tìm kiếm ---")
     search_student(students, "Van")
 
+    # Sửa tên, tuổi và lớp của SV004
+    print("\n--- Sửa tên, tuổi, lớp của SV004 ---")
+    students = update_student(
+        students,
+        "SV004",
+        name="Tran Thi Bich",
+        age=22,
+        grade="K21",
+    )
+
+    print("\n--- Danh sách SV gồm SV004 sau sửa tên, tuổi, lớp: ---")
+    for student in students:
+        print(f"  {student}")
+
+    # Chỉ sửa tuổi của SV004
+    print("\n--- Chỉ sửa tuổi của SV004 ---")
+    students = update_student(students, "SV004", age=21)
+
+    print("\n--- Danh sách sinh vien sau khi sửa tuổi của SV004 ---")
+    for student in students:
+        print(f"  {student}")
+
+
+    # Xóa SV004
+    print("\n--- Xóa sinh viên SV004 ---")
+    students = delete_student(students, "SV004")
+
     
+    print("\n--- Danh sách SV sau xóa SV004: ---")
+    for student in students:
+        print(f"  {student}")
+
+    print(f"\nTotal: {len(students)} students")
 
     
 
@@ -84,7 +116,37 @@ def add_student(students: list, student_id: str, name: str, age: int, grade: str
     print(f"Đã thêm sinh viên: {new_student}")
     return students
 
+def update_student(
+    students,
+    student_id: str,
+    name: str = None,
+    age: int = None,
+    grade: str = None,
+):
+    """Sửa sinh viên theo mã, chỉ cập nhật thông tin được truyền vào."""
+    for student in students:
+        if student.student_id == student_id:
+            if name is not None:
+                student.name = name
 
+            if age is not None:
+                student.age = age
+
+            if grade is not None:
+                student.grade = grade
+
+            return students
+
+    raise ValueError(f"Không tìm thấy sinh viên: {student_id}")
+
+def delete_student(students, student_id: str):
+    """Xóa sinh viên theo mã."""
+    for index, student in enumerate(students):
+        if student.student_id == student_id:
+            students.pop(index)
+            return students
+
+    raise ValueError(f"Không tìm thấy sinh viên: {student_id}")
 
 if __name__ == "__main__":
     main()
