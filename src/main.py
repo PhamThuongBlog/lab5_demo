@@ -39,6 +39,10 @@ def main():
         grade="K21",
     )
 
+    print("\n--- danh sách sinh viên sau khi update SV002 là ---")
+    for student in students:
+            print(f"  {student}")
+
     
 def search_student(students: list, keyword: str) -> list:
     """Tìm kiếm sinh viên theo tên hoặc mã.
