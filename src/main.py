@@ -39,6 +39,9 @@ def main():
         grade="K21",
     )
 
+    print("\n--- danh sách sinh viên sau khi update SV002 là ---")
+    for student in students:
+            print(f"  {student}")
     # Chỉ sửa tuổi của SV001
     students = update_student(students, "SV001", age=21)
 
