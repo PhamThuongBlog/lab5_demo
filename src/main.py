@@ -42,6 +42,8 @@ def main():
     print("\n--- danh sách sinh viên sau khi update SV002 là ---")
     for student in students:
             print(f"  {student}")
+    # Chỉ sửa tuổi của SV001
+    students = update_student(students, "SV001", age=21)
 
     
 def search_student(students: list, keyword: str) -> list:
@@ -94,7 +96,28 @@ def add_student(students: list, student_id: str, name: str, age: int, grade: str
     print(f"Đã thêm sinh viên: {new_student}")
     return students
 
+def update_student(
+    students,
+    student_id: str,
+    name: str = None,
+    age: int = None,
+    grade: str = None,
+):
+    """Sửa sinh viên theo mã, chỉ cập nhật thông tin được truyền vào."""
+    for student in students:
+        if student.student_id == student_id:
+            if name is not None:
+                student.name = name
 
+            if age is not None:
+                student.age = age
+
+            if grade is not None:
+                student.grade = grade
+
+            return students
+
+    raise ValueError(f"Không tìm thấy sinh viên: {student_id}")
 
 
 
